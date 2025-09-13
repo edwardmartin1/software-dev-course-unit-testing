@@ -91,7 +91,12 @@ function sortInventory(inventory = [], key = "")
 
             throw new Error("Inventory must be an array.");    
         }
-            
+
+        if (inventory.length === 0)
+        {
+            return [];
+        }
+
         if (typeof key !== 'string')
         {
             returnValue = inventory;
@@ -116,8 +121,8 @@ function sortInventory(inventory = [], key = "")
         let foundKey = false;
 
         for (let keyName in inventory[1])
-        {
-            if (keyName = key)
+        {  
+            if (keyName === key)
             {
                 foundKey = true;
                 break;
@@ -131,14 +136,11 @@ function sortInventory(inventory = [], key = "")
             throw new Error("Key not found in object.");
         }
 
-
-
         if (key === "price" || key === "inStock")
         { 
             return inventory.sort((a, b) => a[key] - b[key]);
         }
-
-        if (key === "name")
+        else if (key === "name")
         {
             return inventory.sort((a, b) => a[key].toLowerCase().localeCompare(b[key].toLowerCase()));
         }
@@ -152,20 +154,29 @@ function sortInventory(inventory = [], key = "")
     }
 }
 
+
+
 const products =
 [
     { name: "Laptop", price: 1000, inStock: true },
     { name: "Phone", price: 500, inStock: false },
     { name: "Tablet", price: 800, inStock: true },
     { name: "Monitor", price: 300, inStock: true },
-    { name: "Keyboard", price: 100, inStock: false },
-
+    { name: "Keyboard", price: 100, inStock: false }
 ];
 
 
+
+/*
 console.log("sortInventory:", "price:", sortInventory(products, "price"));
 console.log("sortInventory:", "inStock:",sortInventory(products, "inStock"));
 console.log("sortInventory:", "name:",sortInventory(products, "name"));
+console.log("sortInventory:", "invalid key:",sortInventory(products, "quantity"));
+console.log("sortInventory:", "empty array:",sortInventory([], "name"));
+console.log("sortInventory:", "blank key provided:",sortInventory(products, ""));
+console.log("sortInventory:", "no key provided:",sortInventory(products));
+console.log("sortInventory:", "no arguments provided:",sortInventory());
+*/
 
 
 /*
