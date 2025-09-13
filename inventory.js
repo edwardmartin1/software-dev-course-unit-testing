@@ -30,7 +30,7 @@ function calculateDiscount(price = 0, discountRate = 0.0)
         {
             returnValue =  price;
 
-            throw new Error("Discont rate must be great than 0.");
+            throw new Error("Discount rate must be great than 0.");
         } 
             
         if (discountRate > 1) 
@@ -155,7 +155,14 @@ function sortInventory(inventory = [], key = "")
 }
 
 
+module.exports = 
+{
+    calculateDiscount: calculateDiscount,
+    filterProducts: filterProducts,
+    sortInventory: sortInventory
+};
 
+/*
 const products =
 [
     { name: "Laptop", price: 1000, inStock: true },
@@ -164,7 +171,7 @@ const products =
     { name: "Monitor", price: 300, inStock: true },
     { name: "Keyboard", price: 100, inStock: false }
 ];
-
+*/
 
 
 /*
